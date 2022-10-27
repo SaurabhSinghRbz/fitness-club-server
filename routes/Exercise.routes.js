@@ -8,7 +8,6 @@ const Exercise = require("../models/Exercise")
 
 // getAll Exercises...
 ExerciseRouter.get("/exercises", async (req, res) => {
-    console.log("getAll Exercises...")
     try {
         const exercises = await Exercise.find({})
         return res.status(200).send(exercises)
@@ -20,7 +19,6 @@ ExerciseRouter.get("/exercises", async (req, res) => {
 
 // get one exercise by id...
 ExerciseRouter.get("/exercises/:id", async (req, res) => {
-    console.log("get one exercise by id...")
     try {
         const exercise = await Exercise.findOne({ id: req.params.id })
         return res.status(200).send(exercise)
@@ -35,7 +33,6 @@ ExerciseRouter.get("/bodyparts/:bodypart", async (req, res) => {
     console.log("get exercises by body part...")
     try {
         const exercises = await Exercise.find({ bodyPart: req.params.bodypart })
-        console.log(exercises)
         return res.status(200).send(exercises)
     } catch (error) {
         return res.status(500).send(err)
@@ -45,7 +42,6 @@ ExerciseRouter.get("/bodyparts/:bodypart", async (req, res) => {
 
 // get all body parts...
 ExerciseRouter.get("/bodyparts", async (req, res) => {
-    console.log("bodyparts")
     try {
         const bodyparts = await Exercise.find({}).distinct("bodyPart")
         return res.status(200).send(bodyparts)
