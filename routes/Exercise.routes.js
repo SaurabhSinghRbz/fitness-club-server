@@ -4,7 +4,7 @@ const Exercise = require("../models/Exercise")
 
 
 // getAll Exercises...
-ExerciseRouter.get("/", async (req, res) => {
+ExerciseRouter.get("/exercises", async (req, res) => {
     try {
         const exercises = await Exercise.find({})
         return res.status(200).send(exercises)
