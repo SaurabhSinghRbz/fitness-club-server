@@ -51,6 +51,29 @@ ExerciseRouter.get("/bodyparts", async (req, res) => {
 })
 
 
+// get exercise by target muscle...
+ExerciseRouter.get("/exercises/target/:target", async (req, res) => {
+    try {
+        const exercises = await Exercise.find({ target: req.params.target })
+        return res.status(200).send(exercises)
+    } catch (error) {
+        return res.status(500).send(err)
+    }
+})
+
+
+
+// get all exercises by equipment...
+ExerciseRouter.get("/exercises/equipment/:equipment", async (req, res) => {
+    try {
+        const exercises = await Exercise.find({ equipment: req.params.equipment })
+        return res.status(200).send(exercises)
+    } catch (error) {
+        return res.status(500).send(err)
+    }
+})
+
+
 
 // create a new exercise...
 ExerciseRouter.post("/exercises", async (req, res) => {
