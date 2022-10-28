@@ -11,7 +11,6 @@ app.use("/api", ExerciseRouter)
 app.get("/", (req, res) => {
     res.send({
         message: "Welcome to Saurabh's fitness club api",
-
         routes: {
             routesAccessibleToAll: {
                 getAllExercises: "/api/exercises",
@@ -20,14 +19,13 @@ app.get("/", (req, res) => {
                 getExercisesByBodyPart: "/api/bodyparts/:bodypart",
                 getExercisesByTarget: "/api/exercises/target/:target",
                 getExercisesByEquipmeent: "/api/exercises/equipment/:equipment",
+            },
+            routesAccessibleToAdmin: {
+                // to access these routes, you need to provide valid password in the body of the request
+                createExercise: "/api/exercises",
+                updateExercise: "/api/exercises/:id",
+                deleteExercise: "/api/exercises/:id"
             }
-        },
-
-        routesAccessibleToAdmin: {
-            // to access these routes, you need to provide valid password in the body of the request
-            createExercise: "/api/exercises",
-            updateExercise: "/api/exercises/:id",
-            deleteExercise: "/api/exercises/:id"
         }
     })
 })
