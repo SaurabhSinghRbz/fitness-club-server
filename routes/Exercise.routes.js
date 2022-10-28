@@ -20,7 +20,7 @@ ExerciseRouter.get("/exercises", async (req, res) => {
 // get one exercise by id...
 ExerciseRouter.get("/exercises/:id", async (req, res) => {
     try {
-        const exercise = await Exercise.findOne({ id: req.params.id })
+        const exercise = await Exercise.findOne({ _id: req.params.id })
         return res.status(200).send(exercise)
     } catch (error) {
         return res.status(500).send(err)
@@ -98,7 +98,7 @@ ExerciseRouter.put("/exercises/:id", async (req, res) => {
         if (!req.body.password) {
             return res.status(400).send({ message: "password is required" })
         } else if (req.body.password === process.env.ADMIN_PASSWORD) {
-            const exercise = await Exercise.findOneAndUpdate({ id: req.params.id }, req.body, { new: true })
+            const exercise = await Exercise.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true })
             return res.status(200).send(exercise)
         } else {
             return res.status(401).send("Unauthorized, Please Provide a Valid Password")
@@ -114,7 +114,7 @@ ExerciseRouter.delete("/exercises/:id", async (req, res) => {
         if (!req.body.password) {
             return res.status(400).send({ message: "password is required" })
         } else if (req.body.password === process.env.ADMIN_PASSWORD) {
-            const exercise = await Exercise.findOneAndDelete({ id: req.params.id })
+            const exercise = await Exercise.findOneAndDelete({ _id: req.params.id })
             return res.status(200).send(exercise)
         } else {
             return res.status(401).send("Unauthorized, Please Provide a Valid Password")
